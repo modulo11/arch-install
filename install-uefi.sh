@@ -45,11 +45,11 @@ partition_encrypted() {
 }
 
 install_bootstrap() {
-  pacstrap /mnt base
+  pacstrap /mnt base linux linux-firmware
   genfstab -U /mnt >> /mnt/etc/fstab
 
   arch-chroot /mnt /bin/bash -x <<'EOF'
-  pacman -Sy --quiet --noconfirm linux efibootmgr sudo
+  pacman -Sy --quiet --noconfirm efibootmgr sudo
 
   # Setup user and password
   echo "root:${PASSWORD}" | chpasswd
